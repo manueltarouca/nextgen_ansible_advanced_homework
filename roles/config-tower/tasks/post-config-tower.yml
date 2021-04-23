@@ -1,5 +1,12 @@
 - name: Create Homework Assignment project
-
+  tower_project:
+    name: "{{ proj_name }}"
+    organization: Default
+    state: present
+    scm_type: git
+    scm_url: "{{ github_repo }}"
+    tower_username: admin
+    tower_password: r3dh4t1!
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
@@ -48,7 +55,7 @@
     tower_username: admin
     tower_password: r3dh4t1!
     tower_verify_ssl: no
-    ssh_key_data: /root/.ssh/mykey.pem
+    ssh_key_data: "{{ path_to_opentlc_key }}"
     username: "{{ opentlc_login }}"
 
 - name: Remove secret
